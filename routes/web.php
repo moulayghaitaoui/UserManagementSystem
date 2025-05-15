@@ -15,26 +15,26 @@ use App\Http\Controllers\Auth\LoginController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::resource('/users', UserController::class)->only([
-    'index',
-    'destroy',
-    'create'
-]);
-Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
-//users.destroy
-Route::delete('users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
+
 
 
 
 Route::middleware(['auth', 'admin'])->group(function () {
 
-
+    Route::resource('/users', UserController::class)->only([
+        'index',
+        'create'
+    ]);
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
+    //users.destroy
+    Route::delete('users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
     // Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 
