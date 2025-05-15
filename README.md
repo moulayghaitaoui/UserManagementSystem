@@ -53,6 +53,8 @@ Example:
 GET /api/users?page=1&keyword=kata
 GET /api/users/pairs/54
 GET /api/users/age-distribution
+
+- ✅ **⚙️ Environment Setup**
 ## 1. Clone the repository
 `git clone https://github.com/your-username/UserManagementSystem.git`
 `cd UserManagementSystem`
