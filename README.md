@@ -56,7 +56,7 @@ GET /api/users/age-distribution
 
 - ✅ **⚙️ Environment Setup**
 ## 1. Clone the repository
-`git clone https://github.com/your-username/UserManagementSystem.git`
+`git clone https://github.com/moulayghaitaoui/UserManagementSystem.git`
 `cd UserManagementSystem`
 ##  2. Copy and configure environment variables
 `cp .env.example .env`
