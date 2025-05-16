@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Input, Button, Alert } from 'antd';
-import { Inertia } from '@inertiajs/inertia';
+import { router } from '@inertiajs/react';
 
 export default function Login({ errors = {} }) {
   const [form] = Form.useForm();
@@ -8,7 +8,7 @@ export default function Login({ errors = {} }) {
 
   const onFinish = (values) => {
     setSubmitting(true);
-    Inertia.post('/login', values, {
+    router.post('/login', values, {
       onFinish: () => setSubmitting(false),
     });
   };

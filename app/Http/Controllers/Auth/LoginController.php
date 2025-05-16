@@ -37,8 +37,8 @@ class LoginController extends Controller
             }
 
             $request->session()->regenerate();
-
-            return Inertia::location(route('users.index'));
+            return redirect()->route('users.index');
+            // return Inertia::location(route(name: 'users.index'));
         }
 
         return redirect()->back()->withErrors([
@@ -56,6 +56,6 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        return redirect('/');
     }
 }
