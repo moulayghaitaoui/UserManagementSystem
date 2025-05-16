@@ -12,7 +12,7 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-
+            ziggy: '/vendor/tightenco/ziggy/dist',
             '@': path.resolve(__dirname, 'resources/js'), // 👈 تعريف المسار
         },
     },

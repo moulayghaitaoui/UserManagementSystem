@@ -34,7 +34,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
     //users.destroy
-    Route::delete('users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy'); // ✅ صحيح
+
+
+    // Route::delete('users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
     // Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 

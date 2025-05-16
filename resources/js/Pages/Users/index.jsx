@@ -1,23 +1,28 @@
 import React, { useEffect } from 'react';
 import { Table, Button, Popconfirm, Space, message } from 'antd';
-import { router, usePage, Link } from '@inertiajs/react';
+import { router, usePage } from '@inertiajs/react';
+import { route } from 'ziggy-js'
 import AdminLayout from '@/Layouts/AdminLayout';
 
 export default function Users() {
   const { users, flash } = usePage().props;
 
-const { props } = usePage();
-useEffect(() => {
-  if (props.flash?.success) {
-    message.success(props.flash.success);
-  }
-}, [props.flash]);
+  useEffect(() => {
+    if (flash?.success) {
+      message.success(flash.success);
+    }
+    if (flash?.error) {
+      message.error(flash.error);
+    }
+  }, [flash]);
 
-  const handleDelete = (id) => {
-    router.delete(route('users.destroy', id), {
-      onSuccess: () => message.success('تم حذف المستخدم'),
-    });
-  };
+const handleDelete = (id) => {
+  router.delete(route('users.destroy', { user: id }), {
+    onSuccess: () => message.success('تم حذف المستخدم بنجاح'),
+    onError: () => message.error('حدث خطأ أثناء الحذف'),
+  });
+};
+
 
   const columns = [
     { title: 'الاسم', dataIndex: 'name' },
@@ -27,7 +32,12 @@ useEffect(() => {
       title: 'الإجراءات',
       render: (_, record) => (
         <Space>
-          <Popconfirm title="هل أنت متأكد؟" onConfirm={() => handleDelete(record.id)}>
+          <Popconfirm
+            title="هل أنت متأكد من حذف المستخدم؟"
+            onConfirm={() => handleDelete(record.id)}
+            okText="نعم"
+            cancelText="لا"
+          >
             <Button danger>حذف</Button>
           </Popconfirm>
         </Space>
@@ -37,7 +47,6 @@ useEffect(() => {
 
   return (
     <AdminLayout>
-
       <Table
         columns={columns}
         dataSource={users.data}
