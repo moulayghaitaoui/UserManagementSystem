@@ -53,3 +53,19 @@ Example:
 GET /api/users?page=1&keyword=kata
 GET /api/users/pairs/54
 GET /api/users/age-distribution
+
+- ✅ **⚙️ Environment Setup**
+## 1. Clone the repository
+`git clone https://github.com/moulayghaitaoui/UserManagementSystem.git`
+`cd UserManagementSystem`
+##  2. Copy and configure environment variables
+`cp .env.example .env`
+## 3. Start Docker containers
+`docker-compose up -d --build`
+##  4. Install dependencies
+`docker exec -it laravel_app bash`
+`apt update && apt install -y default-mysql-client`
+##  5. Run migrations
+`php artisan migrate`
+##  6. (Optional) Seed test users
+`php artisan db:seed`
